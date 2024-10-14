@@ -1,0 +1,18 @@
+.app {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  & .todo-list {
+    height: 600px;
+    width: 500px;
+    border: solid 1px #4e4e4e;
+    border-radius: 8px;
+    text-align: center;
+  }
+}
