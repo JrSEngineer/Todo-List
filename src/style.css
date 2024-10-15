@@ -3,3 +3,22 @@ body {
     padding: 0;
     background-color: #262525;
 }
+
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 80%;
+    border-top-right-radius: 8px;
+    border: solid 1px #4e4e4e;
+    border-radius: 4px;
+    margin: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #262525;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3c3c3c;
+    border-radius: 4px;
+}
