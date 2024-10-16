@@ -7,7 +7,7 @@ function App() {
         <div className="list-content">
           <div className="list-header">
             <h2>Minha Lista</h2>
-            <p> Veja o que há para fazer. Sua lista contém todas as suas tarefas, e o progresso de todas elas.</p>
+            <h3> Veja o que há para fazer. Sua lista contém todas as suas tarefas, e o progresso de todas elas.</h3>
             <div className="input-section">
               <input />
               <div className="input-actions">
