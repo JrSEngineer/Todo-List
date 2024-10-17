@@ -1,0 +1,22 @@
+.create-todo-form {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.create-todo-form form {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    width: 100%;
+
+    & label {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    & input {
+        margin-bottom: 12px;
+    }
+}
