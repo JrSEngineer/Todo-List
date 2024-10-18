@@ -3,6 +3,12 @@
     justify-content: start;
     flex-direction: column;
     width: 100%;
+
+    & .loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .create-todo-form form {

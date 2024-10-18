@@ -1,103 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: Arial, Helvetica, sans-serif;
   color: #cfcfcf;
   display: flex;
   height: 100vh;
   width: 100vw;
 
-  & .todo-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 24px 12px;
-    height: 80%;
+  & .container {
+    padding: 12px;
+    height: 85%;
     width: 48%;
     min-width: 280px;
-    margin: auto;
     border: solid 1px #4e4e4e;
     border-radius: 8px;
-
-    & .list-content {
-      overflow: auto;
-      height: 100%;
-      width: 100%;
-
-      & .list ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-
-        & li {
-          display: flex;
-          flex-direction: column;
-
-          & h3 {
-            margin: 0;
-            padding: 0;
-          }
-
-          & p {
-            font-size: 12px;
-            letter-spacing: 1px;
-            line-height: 16px;
-          }
-
-          & .task-content {
-            flex-direction: column;
-            text-align: start;
-            margin-bottom: 36px;
-          }
-
-          & .task-status {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            & button {
-              border: solid 1px #4e4e4e;
-              border-radius: 4px;
-              color: #cfcfcf;
-              padding: 12px 24px;
-              background-color: transparent;
-            }
-
-            & p {
-              font-size: 10px;
-              padding: 0;
-              margin: 0;
-              padding-right: 12px;
-            }
-
-            & .status {
-              display: flex;
-              align-items: center;
-              flex-direction: row;
-              margin: 0;
-              padding: 0;
-            }
-
-            & .status-indicator {
-              margin: 0;
-              padding: 0;
-              display: flex;
-              height: 12px;
-              width: 12px;
-              background-color: grey;
-              border-radius: 50px;
-            }
-          }
-
-          display: flex;
-          border: solid 1px #4e4e4e;
-          border-radius: 4px;
-          margin-bottom: 12px;
-          padding: 12px;
-        }
-      }
-
-      
-    }
+    overflow: hidden;
   }
 }

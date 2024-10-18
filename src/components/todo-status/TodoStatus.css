@@ -1,0 +1,32 @@
+.status {
+    width: 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & p {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.waiting {
+    width: 12px;
+    height: 12px;
+    border-radius: 56px;
+    background-color: #4e4e4e;
+}
+
+.in-progress {
+    width: 12px;
+    height: 12px;
+    border-radius: 56px;
+    background-color: #480473;
+}
+
+.completed {
+    width: 12px;
+    height: 12px;
+    border-radius: 56px;
+    background-color: #0f9b00;
+}

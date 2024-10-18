@@ -1,0 +1,17 @@
+.todo-card {
+    border: solid 1px #4e4e4e;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 12px 0;
+
+    & p {
+        font-size: 12px;
+        margin: 12px 0;
+    }
+
+    & .task-status {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
