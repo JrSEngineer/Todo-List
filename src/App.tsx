@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { TodoLoading } from "./components/loading/TodoLoading";
 import TodoButton from "./components/todo-button/TodoButton";
-import { Check } from "lucide-react";
 import { TodoCard } from "./components/todo-card/TodoCard";
 import { Todo } from "./models/todo";
 import "./App.css";
