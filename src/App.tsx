@@ -69,9 +69,9 @@ export default function App() {
     }
   }
 
-  const initTodo = async (id: number) => {
+  const initTodo = async (todo: Todo) => {
     try {
-      const response = await fetch(`https://td-api.up.railway.app/api/todos/${id}`, {
+      const response = await fetch(`https://td-api.up.railway.app/api/todos/${todo.id}`, {
         method: 'PATCH'
       });
 
@@ -87,9 +87,41 @@ export default function App() {
     }
   }
 
-  const deleteTodo = async (id: number) => {
+  const finishTodo = async (todo: Todo) => {
     try {
-      const response = await fetch(`https://td-api.up.railway.app/api/todos/${id}`, {
+      const data = {
+        id: todo.id,
+        title: todo.title,
+        description: todo.description,
+        inProgress: false,
+        completed: true,
+      };
+
+      console.log(data);
+
+      const response = await fetch(`https://td-api.up.railway.app/api/todos/${todo.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "Application/json"
+        }
+      });
+
+      if (!response.ok) {
+        alert("Algo deu errado!");
+      }
+
+      await setTimeout(() => { }, 2000);
+      setTodoListModifiedState(true);
+
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  const deleteTodo = async (todo: Todo) => {
+    try {
+      const response = await fetch(`https://td-api.up.railway.app/api/todos/${todo.id}`, {
         method: 'DELETE'
       });
 
@@ -123,15 +155,17 @@ export default function App() {
           <p>Voce também pode adicionar novas tarefas.</p>
           <h4>Adicionar Tarefa</h4>
           <div className="create-todo-form">
-            {
-              <form onSubmit={handleSubmit(createNewTodo)}>
+            <form onSubmit={handleSubmit(createNewTodo)}>
+              <div>
                 <label htmlFor="title">Título</label>
                 <input className="todo-input" {...register("title")} />
+              </div>
+              <div>
                 <label htmlFor="description">Descrição</label>
                 <input className="todo-input" {...register("description")} />
-                <TodoButton iconSize={"16px"} icon={Check} buttonType="submit" />
-              </form>
-            }
+              </div>
+              <TodoButton text="Salvar" buttonType="submit" />
+            </form>
           </div>
         </div>
         <div className="todo-list">
@@ -141,8 +175,9 @@ export default function App() {
               {todoList.length > 0 ? todoList.map((todo) => {
                 return (<TodoCard
                   todo={todo}
-                  initTodo={async () => initTodo(todo.id)}
-                  deleteTodo={async () => deleteTodo(todo.id)}
+                  initTodo={async () => initTodo(todo)}
+                  finishTodo={async () => finishTodo(todo)}
+                  deleteTodo={async () => deleteTodo(todo)}
                 />)
               }) :
                 <div className="empty-list">
@@ -152,6 +187,10 @@ export default function App() {
             </ul>
           }
         </div>
+      </div>
+      <div className="progress">
+        <p>Porcentagem %</p>
+        <div className="progress-bar"></div>
       </div>
     </main>
   )

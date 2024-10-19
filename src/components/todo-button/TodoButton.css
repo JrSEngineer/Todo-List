@@ -1,20 +1,22 @@
+.todo-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 280px;
+}
+
 .todo-button button {
     display: flex;
     align-items: center;
-    justify-self: center;
-    text-align: center;
+    justify-content: center;
     padding: 8px 16px;
     background-color: transparent;
-    border: solid 1px #4e4e4e;
+    border: solid 1px #353535;
     color: #cfcfcf;
     height: auto;
     border-radius: 4px;
     transition-duration: 200ms;
-
-    & p {
-        margin: 0;
-        padding: 0;
-    }
+    width: 100%;
 }
 
 .todo-button button:hover {
@@ -24,16 +26,10 @@
     text-align: center;
     padding: 8px 16px;
     background-color: transparent;
-    border: solid 1px #4e4e4e;
+    border: solid 1px #353535;
     color: #cfcfcf;
     height: auto;
     border-radius: 4px;
-
-    & p {
-        margin: 0;
-        padding: 0;
-    }
-
     scale: 1.05;
     cursor: pointer;
 }

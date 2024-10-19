@@ -7,10 +7,11 @@ import "./TodoCard.css";
 type TodoCardProps = {
     todo: Todo;
     initTodo: () => void;
+    finishTodo: () => void;
     deleteTodo: () => void;
 }
 
-export function TodoCard({ todo, initTodo, deleteTodo }: TodoCardProps) {
+export function TodoCard({ todo, initTodo, finishTodo, deleteTodo }: TodoCardProps) {
     return (
         <div className="todo-card">
             {
@@ -20,11 +21,16 @@ export function TodoCard({ todo, initTodo, deleteTodo }: TodoCardProps) {
                             <h3>{todo?.title}</h3>
                             <p>{todo?.description}</p>
                         </div>
-                        {/* <TodoButton text="Iniciar" loading={loading} onClick={startTodo} /> */}
                         <TodoButton iconSize="12" icon={LucideTrash} onClick={deleteTodo} />
                     </div>
                     <div className="task-status">
-                        <TodoButton text="Iniciar" onClick={initTodo} />
+                        {
+                            todo.completed ?
+                                <div></div> :
+                                todo.inProgress ?
+                                    <TodoButton text={"Finalizar"} onClick={finishTodo} /> :
+                                    <TodoButton text={"Iniciar"} onClick={initTodo} />
+                        }
                         <TodoStatus todo={todo} />
                     </div>
                 </li>

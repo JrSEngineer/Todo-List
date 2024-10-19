@@ -1,5 +1,5 @@
 .todo-card {
-    border: solid 1px #4e4e4e;
+    border: solid 1px #353535;
     border-radius: 8px;
     padding: 12px;
     margin: 12px 0;
@@ -19,4 +19,16 @@
 .card-header {
     display: flex;
     justify-content: space-between;
+}
+
+.card-header button:hover {
+    border: solid 1px #fff;
+    color: #fff;
+    background-color: #500202;
+}
+
+.task-status button:hover {
+    border: solid 1px #fff;
+    color: #fff;
+    background-color: #480473;
 }
