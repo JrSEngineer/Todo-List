@@ -1,4 +1,4 @@
-import { Todo } from "../todo-list/todo";
+import { Todo } from "../../models/todo";
 import "./TodoStatus.css";
 
 type TodoStatusProps = {

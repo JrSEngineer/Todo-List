@@ -1,13 +1,157 @@
-import "./App.css"
-import TodoHeader from "./components/todo-header/TodoHeader"
-import { TodoList } from "./components/todo-list/TodoList"
+import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { TodoLoading } from "./components/loading/TodoLoading";
+import TodoButton from "./components/todo-button/TodoButton";
+import { Check } from "lucide-react";
+import { TodoCard } from "./components/todo-card/TodoCard";
+import { Todo } from "./models/todo";
+import "./App.css";
+
+type CreateTodo = {
+  title: string;
+  description: string;
+}
+
 
 export default function App() {
+  const { register, reset, handleSubmit } = useForm<CreateTodo>();
+  const [todoList, setTodoList] = useState<Todo[]>([]);
+  var [loading, setLoading] = useState<boolean>(false);
+  var [todoListModified, setTodoListModifiedState] = useState<boolean>(false);
+
+  const getAllTodosFromApi = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch("https://td-api.up.railway.app/api/todos", {
+        method: "GET",
+        headers: { "Content-Type": "Application/json" }
+      });
+      if (!response.ok) {
+        alert("Falha ao obter lista de tarefas!");
+        setLoading(false);
+      }
+      const data: Todo[] = await response.json();
+
+      data.reverse();
+
+      setTodoList(data);
+
+      setLoading(false);
+    } catch (error) {
+      alert(error);
+      setLoading(false);
+    }
+  }
+
+
+  async function createNewTodo(data: CreateTodo) {
+    try {
+
+      const response = await fetch("https://td-api.up.railway.app/api/todos", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "Application/json"
+        }
+      })
+
+      if (response.status != 201) {
+        alert("Não foi possível criar uma nova tarefa.");
+      }
+
+      reset();
+
+      await setTimeout(() => { }, 2000);
+      setTodoListModifiedState(true);
+
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  const initTodo = async (id: number) => {
+    try {
+      const response = await fetch(`https://td-api.up.railway.app/api/todos/${id}`, {
+        method: 'PATCH'
+      });
+
+      if (!response.ok) {
+        alert("Algo deu errado!");
+      }
+
+      await setTimeout(() => { }, 2000);
+      setTodoListModifiedState(true);
+
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  const deleteTodo = async (id: number) => {
+    try {
+      const response = await fetch(`https://td-api.up.railway.app/api/todos/${id}`, {
+        method: 'DELETE'
+      });
+
+      if (!response.ok) {
+        alert("Algo deu errado!");
+      }
+
+      await setTimeout(() => { }, 2000);
+      setTodoListModifiedState(true);
+
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  useEffect(() => {
+    getAllTodosFromApi();
+    return () => {
+      setTodoListModifiedState(false);
+    }
+  }, [
+    todoListModified
+  ]);
+
   return (
     <main className="app" >
       <div className="container">
-        <TodoHeader />
-        <TodoList />
+        <div className="list-header">
+          <h2>Minha Lista</h2>
+          <h3> Veja o que há para fazer. Sua lista contém todas as suas tarefas, e o progresso de todas elas.</h3>
+          <p>Voce também pode adicionar novas tarefas.</p>
+          <h4>Adicionar Tarefa</h4>
+          <div className="create-todo-form">
+            {
+              <form onSubmit={handleSubmit(createNewTodo)}>
+                <label htmlFor="title">Título</label>
+                <input className="todo-input" {...register("title")} />
+                <label htmlFor="description">Descrição</label>
+                <input className="todo-input" {...register("description")} />
+                <TodoButton iconSize={"16px"} icon={Check} buttonType="submit" />
+              </form>
+            }
+          </div>
+        </div>
+        <div className="todo-list">
+          {loading ?
+            <TodoLoading /> :
+            <ul>
+              {todoList.length > 0 ? todoList.map((todo) => {
+                return (<TodoCard
+                  todo={todo}
+                  initTodo={async () => initTodo(todo.id)}
+                  deleteTodo={async () => deleteTodo(todo.id)}
+                />)
+              }) :
+                <div className="empty-list">
+                  <h4>Você ainda não possui nenhuma tarefa registrada.</h4>
+                  <p>Crie suas primeiras tarefas e se organize</p>
+                </div>}
+            </ul>
+          }
+        </div>
       </div>
     </main>
   )
