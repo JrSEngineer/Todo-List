@@ -5,147 +5,224 @@
 
 .app {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   font-family: Arial, Helvetica, sans-serif;
   color: #cfcfcf;
   display: flex;
   height: 100vh;
   width: 100vw;
+  min-width: 348px;
 
-  & .container {
-    background-color: #242424;
-    padding: 12px;
-    height: 85%;
-    width: 48%;
-    min-width: 280px;
-    border: solid 1px #353535;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  & .list-header {
+  & .app-container {
     display: flex;
-    flex-direction: column;
-    align-items: start;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: 548px;
     width: 100%;
-    margin-bottom: 24px;
-    border-bottom: solid 1px #353535;
 
-    & .create-todo-form {
+    & .container {
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
+      background-color: #242424;
+      padding: 12px;
+      height: 92%;
+      width: 48%;
       min-width: 280px;
-      margin: 0 auto;
-      margin-bottom: 24px;
+      border: solid 1px #353535;
+      border-radius: 8px;
+      overflow: hidden;
 
-      & .loading {
+      & .list-header {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        height: 66%;
+        width: 100%;
+        border-bottom: solid 1px #353535;
+
+        & .create-todo-form {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          min-width: 280px;
+          margin: 0 auto;
+          margin-bottom: 4%;
+
+          & .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        & .create-todo-form form {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          width: 100%;
+
+          & div {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+          }
+
+          & label {
+            font-size: 12px;
+            margin-bottom: 8px;
+          }
+
+          & .todo-input {
+            outline: none;
+            background-color: transparent;
+            border: solid 1px #353535;
+            border-radius: 4px;
+            padding: 6px 2px;
+            color: #cfcfcf;
+          }
+
+          & input {
+            margin-bottom: 12px;
+          }
+        }
+
+        & h2 {
+          margin: 0;
+          margin-bottom: 4%;
+        }
+
+        & h3 {
+          margin: 0;
+          font-weight: 200;
+          margin-bottom: 4%;
+          font-size: 16px;
+        }
+
+        & p {
+          text-align: start;
+          font-size: 12px;
+          padding: 0;
+          margin: 0;
+          margin-bottom: 4%;
+        }
+      }
+
+      & .todo-list {
         display: flex;
         align-items: center;
         justify-content: center;
-      }
-    }
-
-    & .create-todo-form form {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      width: 100%;
-
-      & div {
-        display: flex;
         flex-direction: column;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-      }
+        height: 34%;
 
-      & label {
-        font-size: 12px;
-        margin-bottom: 8px;
-      }
+        & ul {
+          overflow: scroll;
+          list-style: none;
+          width: 100%;
+        }
 
-      & .todo-input {
-        outline: none;
-        background-color: transparent;
-        border: solid 1px #4e4e4e;
-        border-radius: 4px;
-        padding: 6px 2px;
-        color: #cfcfcf;
-      }
-
-      & input {
-        margin-bottom: 12px;
+        & .empty-list {
+          text-align: center;
+        }
       }
     }
 
-    & h2 {
-      margin: 0;
-      margin-bottom: 24px;
-    }
-
-    & h3 {
-      margin: 0;
-      font-weight: 200;
-      margin-bottom: 24px;
-      font-size: 16px;
-    }
-
-    & p {
-      text-align: start;
-      font-size: 12px;
-      padding: 0;
-      margin: 0;
-      margin-bottom: 24px;
-    }
-  }
-
-
-  & .todo-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 42%;
-
-    & ul {
-      overflow: scroll;
-      list-style: none;
-      width: 100%;
-    }
-
-    & .empty-list {
-      text-align: center;
-    }
   }
 
   h4 {
     padding: 0;
     margin: 0;
-    margin-bottom: 24px;
+    margin-bottom: 4%;
   }
 
 }
 
-.progress {
-  width: 49%;
-  margin-top: 16px;
+.progress-bar-section {
+  width: 33%;
+  min-width: 248px;
+  margin-right: 36px;
+  p {
+    font-size: 10px;
+  }
+
+  & .progress {
+    width: 100%;
+    margin-top: 16px;
+
+    & .waiting-progress-bar {
+      display: flex;
+      width: 100%;
+      border-radius: 56px;
+      background-color: #353535;
+      height: 8px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+
+      & .waiting-value {
+        height: 6px;
+        background-color: #686868;
+        border-radius: 56px;
+      }
+    }
+
+    & .inProgress-progress-bar {
+      justify-content: start;
+      width: 100%;
+      border-radius: 56px;
+      background-color: #353535;
+      height: 8px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+
+      & .inProgress-value {
+        height: 6px;
+        background-color: #480473;
+        border-radius: 56px;
+      }
+    }
+
+    & .completed-progress-bar {
+      align-items: center;
+      width: 100%;
+      border-radius: 56px;
+      background-color: #353535;
+      height: 8px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+
+      & .completed-value {
+        height: 6px;
+        background-color: #0f9b00;
+        border-radius: 56px;
+      }
+    }
+  }
+
 }
 
-.progress-bar {
-  width: 100%;
-  border-radius: 56px;
-  background-color: #353535;
-  height: 6px;
-  margin-top: 16px;
-}
 
 .create-todo-form form button:hover {
   border: solid 1px #fff;
   color: #fff;
   background-color: #3aa541;
+}
+
+@media only screen and (max-width:680px) {
+  [class="app"] {
+    align-items: center;
+    flex-direction: column;
+    padding: 12px;
+  }
+
+  [class="progress-bar-section"] {
+    width: 48%;
+    margin: 0;
+    min-width: 256px;
+  }
 }
