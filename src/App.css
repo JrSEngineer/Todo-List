@@ -26,6 +26,7 @@
     & .container {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       background-color: #242424;
       padding: 12px;
       height: 92%;
@@ -39,9 +40,9 @@
         display: flex;
         flex-direction: column;
         align-items: start;
-        height: 66%;
+        height: 60%;
+        min-height: 280px;
         width: 100%;
-        border-bottom: solid 1px #353535;
 
         & .create-todo-form {
           display: flex;
@@ -216,6 +217,7 @@
 @media only screen and (max-width:680px) {
   [class="app"] {
     align-items: center;
+    min-height: 540px;
     flex-direction: column;
     padding: 12px;
   }
